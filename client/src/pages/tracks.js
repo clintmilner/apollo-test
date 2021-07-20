@@ -1,12 +1,37 @@
-import React from 'react';
-import { Layout } from '../components';
+import React from 'react'
+import { Layout, QueryResult } from '../components'
+import { gql, useQuery } from '@apollo/client'
+import TrackCard from '../containers/track-card'
 
-/**
- * Tracks Page is the Catstronauts home page.
- * We display a grid of tracks fetched with useQuery with the TRACKS query
- */
+const TRACKS = gql`
+  query getTracks {
+    tracksForHome {
+      id
+      length
+      thumbnail
+      title
+      modulesCount
+      author {
+        name
+        id
+        photo
+      }
+    }
+  }
+`
+
 const Tracks = () => {
-  return <Layout grid> </Layout>;
-};
+  const { data, loading, error } = useQuery(TRACKS)
 
-export default Tracks;
+  return (
+    <Layout grid>
+      <QueryResult data={data} error={error} loading={loading}>
+        {data?.tracksForHome?.map((track, idx) => (
+          <TrackCard key={idx} track={track} />
+        ))}
+      </QueryResult>
+    </Layout>
+  )
+}
+
+export default Tracks

@@ -6,12 +6,17 @@
   "scripts": {
     "start": "nodemon src/index"
   },
-  "dependencies": {},
+  "dependencies": {
+    "apollo-datasource-rest": "^3.0.1",
+    "apollo-server": "^3.0.1",
+    "graphql": "^15.5.1",
+    "node-fetch": "^2.6.1"
+  },
   "devDependencies": {
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   },
-  "author": "Raphael Terrier @R4ph-t",
+  "author": "Clint Milner",
   "license": "MIT",
   "private": true
 }
